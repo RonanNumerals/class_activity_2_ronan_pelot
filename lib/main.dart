@@ -31,16 +31,18 @@ class _RunMyAppState extends State<RunMyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
         scaffoldBackgroundColor: Colors.grey[200], 
+        // This is something I implemented after struggling to find a way to change the AppBar color in light mode.
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.blueGrey,
-        ),// Light mode background
-      ),
+        ),
+      ), // Light mode background
       
       darkTheme: ThemeData.dark(), // Dark mode configuration
       
       themeMode: _themeMode, // Connects the state to the app
 
       home: Scaffold(
+        // Here is the AppBar, it will change color based on the theme mode.
         appBar: AppBar(
           title: const Text('Theme Demo'),
         ),
@@ -48,26 +50,29 @@ class _RunMyAppState extends State<RunMyApp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // PART 1 TASK: Container and Text
+              // Here is my animated container, it will switch themes based on the state of the switch below.
               AnimatedContainer(
+                // The duration of the animation is set to 500 milliseconds.
                 duration: const Duration(milliseconds: 500), // Task 3
                 padding: const EdgeInsets.all(20),
                 width: 300,
                 height: 200,
+                // Here is the box that contains the icon and text, it will change color based on the theme mode.
                 decoration: BoxDecoration(
                   color: _themeMode == ThemeMode.dark ? Colors.white : Colors.grey,
                   borderRadius: BorderRadius.circular(20),
                 ),
+                // Here is the content of the box, it contains an icon and two text widgets, all of which are centered.
                 child: Column(
                   children: [
                     Icon(Icons.phone_android, color: Colors.black, size: 50),
                     const Text('Mobile App Development Testing', style: TextStyle(fontSize: 18, color: Colors.black), textAlign: TextAlign.center),
-                    // Task 2 & 4: Switch with Dynamic Icon
                     const Text('Demonstrating theme switching with smooth animations', style: TextStyle(fontSize: 12, color: Colors.black), textAlign: TextAlign.center),
                   ],
                 ),
               ),
               
+              // Here is the switch to toggle between light and dark themes, it is centered below the animated container.
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
